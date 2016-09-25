@@ -54,8 +54,6 @@ exports.eventEngageData = function (req,res) {
 
 
 
-
-
 exports.userSignups = function (req,res) {
 	//var month_no, month_jobs;
 	var query1,query2,query3;
@@ -137,11 +135,3 @@ function reverseSortByKey(array, key) {
         return ((x > y) ? 1 : ((x < y) ? -1 : 0));
     });
 }
-
-
-function sortByKey(array, key) {
-    return array.sort(function(a, b) {
-        var x = a[key]; var y = b[key];
-        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-    });
-};
