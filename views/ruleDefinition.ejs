@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="sf_labor" >
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="angularjs/controller.js"></script>
+<head> 
+<title>Rule</title>
+</head>
+<%- include header %>
+<body class="content"  style="padding-left:5%;padding-right:5%" ng-controller="controller" ng-init="getRules()"> 
+<br/>
+<h3 class="box-title">Rules List</h3>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" >
+            <div class="box-body table-responsive">
+                
+                <table class="table table-bordered table-striped table-hover tablesorter"  id="tblCustomerController">
+                    <thead>
+                        <tr class='active'>
+                            <th ng-click="sort('Rule')">Rule<span class="fa fa-sort" ng-show="sortKey=='Rule'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                            <th ng-click="sort('Priority')">Priority<span class="fa fa-sort" ng-show="sortKey=='Priority'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                            <th ng-click="sort('ActivityPoint')">Activity Point<span class="fa fa-sort" ng-show="sortKey=='ActivityPoint'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                            <th ng-click="sort('ExpirationDate')">Rule Validity (days)<span class="fa fa-sort" ng-show="sortKey=='ExpirationDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                           </tr>
+                    </thead>
+                    <tr ng-repeat="rule in Rules">                          
+                 		<td><button style=" background:none;border:none; text-align: left;color:#069;cursor:pointer;" type="submit" ng-model="editRule" class="button-link" ng-click="editRule(rule)">{{rule.rule}}</button></td>
+                    	<td>{{rule.priority}}</td>
+                    	<td>{{rule.activity_point}}</td>
+                    	<td>{{rule.expiration_day}}</td>                    
+                    </tr>
+                </table>
+                <dir-pagination-controls max-size="10"
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade in" aria-hidden="false" style="display: block;" ng-show="editRuleModal">
+    
+        <div class="modal-dialog">
+            <div class="modal-content" >
+                <div class="modal-header" style="background-color:#3c8dbc">
+                    <button type="button" class="close" ng-click="editRuleModal=false" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="CreateCustomerLabel">Create Role</h4>
+                </div>
+                <section class="content" style="padding:2%;">
+                    <form id="frmRoleAdd" name="frmRoleAdd" ng-submit="updateRule(RuleToEdit)">
+                        <div>
+    						<label>Rule</label>
+    						<input type="text" ng-model="rule" class="form-control" /><br />
+						</div>
+						<div>
+    						<label>Priority</label>
+    						<input type="text" ng-model="priority" class="form-control" /><br />
+						</div>
+						<div>
+    						<label>Activity Point</label>
+    						<input type="text" ng-model="activityPoint" class="form-control" /><br />
+						</div>
+						<div>
+    						<label>Rule Validity (days)</label>
+    						<input type="text" ng-model="expirationDate" class="form-control" /><br />
+						</div>
+                        <div class="box-footer">
+                            <button type="button" class="btn btn-default" ng-click="editRuleModal=false">Close</button>
+                            <button type="submit" class="btn btn-primary pull-right" id="btncreateRole" name="btncreateRole">Save Changes</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
