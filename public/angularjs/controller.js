@@ -8,27 +8,27 @@ sf_labor.controller('controller', function($scope, $http) {
 			method : "GET",
 			url : '/getMenRankings'
 		}).success(function(data) {
-			$scope.Ranking = data.data;	 
+			$scope.Ranking = data.data;
 		}).error(function(error) {
 		});
 	}
-	
+
 	$scope.getWomenRankings = function(){
 		$http({
 			method : "GET",
 			url : '/getWomenRankings'
 		}).success(function(data) {
-			$scope.Ranking = data.data;	 
+			$scope.Ranking = data.data;
 		}).error(function(error) {
 		});
-	}	
-	
-	$scope.getGroups = function(){		
+	}
+
+	$scope.getGroups = function(){
 		$http({
 			method : "POST",
 			url : '/getGroups'
 		}).success(function(data) {
-			$scope.Groups = data;	 
+			$scope.Groups = data;
 		}).error(function(error) {
 		});
 	}
@@ -41,13 +41,13 @@ sf_labor.controller('controller', function($scope, $http) {
 			url : '/getRuleAssociation',
 			data : {"groupId" : selectedGroup}
 		}).success(function(data) {
-			$scope.RuleAssociation = data;	 
+			$scope.RuleAssociation = data;
 		}).error(function(error) {
 			$scope.unexpected_error = false;
 			$scope.invalid_credentials=true;
 		});
 	}
-	
+
 	$scope.updateRuleAssociation = function(ruleAssociation)
 	{
 		var isApplicable = 0;
@@ -114,7 +114,7 @@ sf_labor.controller('controller', function($scope, $http) {
 			else {
 				$scope.editRuleModal = false;
 				$scope.getRules();
-			}				 
+			}
 		}).error(function(error) {
 			$scope.unexpected_error = false;
 			$scope.invalid_credentials=true;
@@ -127,13 +127,13 @@ sf_labor.controller('controller', function($scope, $http) {
 			method : "POST",
 			url : '/getRules'
 		}).success(function(data) {
-			$scope.Rules = data;	 
+			$scope.Rules = data;
 		}).error(function(error) {
 			$scope.unexpected_error = false;
 			$scope.invalid_credentials=true;
 		});
 	}
-	
+
 	$scope.editRule = function(rule)
 	{
 		$scope.RuleToEdit = rule;
@@ -143,7 +143,7 @@ sf_labor.controller('controller', function($scope, $http) {
 		$scope.expirationDate = rule.expiration_day;
 		$scope.editRuleModal = true;
 	}
-	
+
 	$scope.updateRule = function(rule)
 	{
 		$http({
@@ -165,7 +165,7 @@ sf_labor.controller('controller', function($scope, $http) {
 			else {
 				$scope.editRuleModal = false;
 				$scope.getRules();
-			}				 
+			}
 		}).error(function(error) {
 			$scope.unexpected_error = false;
 			$scope.invalid_credentials=true;

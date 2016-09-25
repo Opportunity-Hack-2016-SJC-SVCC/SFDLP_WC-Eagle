@@ -10,18 +10,12 @@ var express = require('express')
 , ruleDefinition = require('./routes/ruleDefinition')
 , ruleAssociation = require('./routes/ruleAssociation')
 , ranking = require('./routes/ranking')
+, login = require('./routes/login')
 , connectionPool = require('./routes/connectionPool')
 , session = require('client-sessions');
 var ejs = require('ejs');
 
 var app = express();
-
-app.use(session({   	  
-	cookieName: 'session',    
-	secret: 'twitter_010700430',    
-	duration: 30 * 60 * 1000,    //setting the time for active session
-	activeDuration: 5 * 60 * 1000,  
-}));
 
 connectionPool.createConnectionPool(1000);
 
@@ -58,10 +52,13 @@ app.post('/getGroups',ruleAssociation.getGroups);
 app.get('/getMenRankings',ranking.getMenRankings);
 app.get('/getWomenRankings',ranking.getWomenRankings);
 
+app.get('/analytics', login.analytics);
+app.get('/jobsgraph',login.monthwiseJobsData);
+app.get('/eventsgraph',login.eventEngageData);
+app.get('/signupGraph',login.userSignups);
+
 
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
-
-
