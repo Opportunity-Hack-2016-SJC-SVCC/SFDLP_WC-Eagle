@@ -6,8 +6,8 @@ function getConnection(){
 	var connection = mysql.createConnection({
 	    host     : 'localhost',
 	    user     : 'root',
-	    password : 'neel',
-	    database : 'sjlabor',
+	    password : 'root',
+	    database : 'admin',
 	    port	 : 3306
 	});
 	return connection;
@@ -21,7 +21,7 @@ exports.createConnectionPool = function(noOfConnections){
 };
 
 exports.getConnectionFromConnectionPool = function (){
-
+	
 	if(connectionPool.length == 0){
 		return getConnection();
 	}else{
@@ -30,5 +30,5 @@ exports.getConnectionFromConnectionPool = function (){
 };
 
 exports.releaseConnection = function(connection){
-	connectionPool.push(connection);
+	connectionPool.push(connection);	
 }
