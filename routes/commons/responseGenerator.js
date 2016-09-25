@@ -26,3 +26,4 @@ exports.responseGenerator = function (status_code,data1,data2){
 	
 	return json_response;
 }
+
